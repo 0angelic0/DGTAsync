@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0DE42360-0D05-44AE-ABBB-792D6287DB20</string>
+	<key>IDESourceControlProjectName</key>
+	<string>DGTAsync</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0141B4D247DF97AB62335B2B754B8F5718A5B5E7</key>
+		<string>https://github.com/0angelic0/DGTAsync.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>DGTAsync.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0141B4D247DF97AB62335B2B754B8F5718A5B5E7</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/0angelic0/DGTAsync.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0141B4D247DF97AB62335B2B754B8F5718A5B5E7</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0141B4D247DF97AB62335B2B754B8F5718A5B5E7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DGTAsync</string>
+		</dict>
+	</array>
+</dict>
+</plist>
