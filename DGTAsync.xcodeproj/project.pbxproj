@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18FFA0F31B0308370082DCD9 /* DGTAsync.h in Headers */ = {isa = PBXBuildFile; fileRef = 18FFA0F21B0308370082DCD9 /* DGTAsync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18FFA0F91B0308370082DCD9 /* DGTAsync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FFA0ED1B0308370082DCD9 /* DGTAsync.framework */; };
 		18FFA1001B0308370082DCD9 /* DGTAsyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFA0FF1B0308370082DCD9 /* DGTAsyncTests.swift */; };
 		18FFA10A1B03097C0082DCD9 /* DGTAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFA1091B03097C0082DCD9 /* DGTAsync.swift */; };
@@ -27,7 +26,6 @@
 /* Begin PBXFileReference section */
 		18FFA0ED1B0308370082DCD9 /* DGTAsync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DGTAsync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FFA0F11B0308370082DCD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18FFA0F21B0308370082DCD9 /* DGTAsync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DGTAsync.h; sourceTree = "<group>"; };
 		18FFA0F81B0308370082DCD9 /* DGTAsyncTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DGTAsyncTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FFA0FE1B0308370082DCD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18FFA0FF1B0308370082DCD9 /* DGTAsyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DGTAsyncTests.swift; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 		18FFA0EF1B0308370082DCD9 /* DGTAsync */ = {
 			isa = PBXGroup;
 			children = (
-				18FFA0F21B0308370082DCD9 /* DGTAsync.h */,
 				18FFA0F01B0308370082DCD9 /* Supporting Files */,
 				18FFA1091B03097C0082DCD9 /* DGTAsync.swift */,
 			);
@@ -113,7 +110,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18FFA0F31B0308370082DCD9 /* DGTAsync.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
