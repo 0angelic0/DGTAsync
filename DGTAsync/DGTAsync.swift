@@ -38,6 +38,28 @@ public class DGTAsync {
     private var next: DGTAsync?
     private var err_callback: async_err_callback?
     
+    public static func background(async_block: async_dispatch_block_t) -> DGTAsync {
+        let anAsync = DGTAsync(async_block: async_block)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), anAsync.block!)
+        return anAsync
+    }
+    
+    public func background(async_block: async_dispatch_block_t) -> DGTAsync {
+        next = DGTAsync(async_block: async_block)
+        next?.queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
+        return next!
+    }
+    
+    public func main(async_block: async_dispatch_block_t) -> DGTAsync {
+        next = DGTAsync(async_block: async_block)
+        next?.queue = dispatch_get_main_queue()
+        return next!
+    }
+    
+    public func err(err_callback: async_err_callback) -> Void {
+        self.err_callback = err_callback
+    }
+    
     private func callback(error: NSError?) -> Void {
         if error == nil {
             self.async_block_done()
@@ -61,28 +83,6 @@ public class DGTAsync {
         
         let _block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS, b)
         self.block = _block
-    }
-    
-    static func background(async_block: async_dispatch_block_t) -> DGTAsync {
-        let anAsync = DGTAsync(async_block: async_block)
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), anAsync.block!)
-        return anAsync
-    }
-    
-    func background(async_block: async_dispatch_block_t) -> DGTAsync {
-        next = DGTAsync(async_block: async_block)
-        next?.queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
-        return next!
-    }
-    
-    func main(async_block: async_dispatch_block_t) -> DGTAsync {
-        next = DGTAsync(async_block: async_block)
-        next?.queue = dispatch_get_main_queue()
-        return next!
-    }
-    
-    func err(err_callback: async_err_callback) -> Void {
-        self.err_callback = err_callback
     }
     
     private func async_block_done() {
