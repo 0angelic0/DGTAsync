@@ -44,6 +44,12 @@ public class DGTAsync {
         return anAsync
     }
     
+    public static func main(async_block: async_dispatch_block_t) -> DGTAsync {
+        let anAsync = DGTAsync(async_block: async_block)
+        dispatch_async(dispatch_get_main_queue(), anAsync.block!)
+        return anAsync
+    }
+    
     public func background(async_block: async_dispatch_block_t) -> DGTAsync {
         next = DGTAsync(async_block: async_block)
         next?.queue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
