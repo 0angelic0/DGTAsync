@@ -15,7 +15,7 @@ And then, when the tasks finished you have to call `cb(nil)` to let DGTAsync kno
 
 ```
 DGTAsync.background { cb in
-  syncTask()
+  self.syncTask()
   cb(nil)
 }
 ```
@@ -25,11 +25,11 @@ Just call the `cb(nil)` when the tasks done.
 
 ```
 DGTAsync.background { cb in
-  asyncTask(cb)
+  self.asyncTask(cb)
 }
 
 func asyncTask(cb: async_done_callback) {
-  doSomethingWithCompletionHandler {
+  self.doSomethingWithCompletionHandler {
     cb(nil)
   }
 }
@@ -41,14 +41,14 @@ You can do chaining asynchronous tasks synchronously.
 
 ```
 DGTAsync.background { cb in
-  asyncTask(cb)
+  self.asyncTask(cb)
 }.background { cb in
   // Enter here only after asyncTask done
-  syncTask() 
+  self.syncTask() 
   cb(nil)
 }.main { cb in
   // Enter here only after syncTask done (because we put cb(nil) after it, make sense?)
-  doSomethingInMainQueue()
+  self.doSomethingInMainQueue()
   cb(nil)
 }
 ```
@@ -66,11 +66,11 @@ DGTAsync.background { cb in
                    }
 }.background { cb in
   // This block will be skipped if the request has error
-  doSomethingAfterGetResponse()
+  self.doSomethingAfterGetResponse()
   cb(nil)
 }.main { cb in
   // This block also will be skipped if the request has error
-  updateUI()
+  self.updateUI()
   cb(nil)
 }.err { error in
   println("Request Error: \(error.localizedDescription)")
