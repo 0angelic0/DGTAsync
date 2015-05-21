@@ -45,6 +45,17 @@ class DGTAsyncTests: XCTestCase {
         }
     }
     
+    let lock: NSLock = NSLock()
+    func asyncTaskTimeUse(cb: async_done_callback, timeuse: NSTimeInterval, _ output: Output) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+            NSThread.sleepForTimeInterval(timeuse)
+            self.lock.lock()
+                output.add("asyncTaskTimeUse")
+            self.lock.unlock()
+            cb(nil)
+        }
+    }
+    
     func asyncTaskError(cb: async_done_callback, _ output: Output) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
             output.add("asyncTaskError")
@@ -149,4 +160,36 @@ class DGTAsyncTests: XCTestCase {
         })
     }
     
+    func testParallel() {
+        let expectation: XCTestExpectation = self.expectationWithDescription("DGTAsync can run tasks parallel")
+        
+        var output = Output()
+        DGTAsync.pbackground { cb in
+            self.asyncTaskTimeUse(cb, timeuse: 2, output)
+        }.pbackground { cb in
+            self.asyncTaskTimeUse(cb, timeuse: 2, output)
+        }.pmain { cb in
+            self.asyncTaskTimeUse(cb, timeuse: 3, output)
+        }.pbackground { cb in
+            self.asyncTaskTimeUse(cb, timeuse: 4, output)
+        }.pmain { cb in
+            self.asyncTaskTimeUse(cb, timeuse: 5, output)
+        }.pbackground { cb in
+            self.asyncTaskTimeUse(cb, timeuse: 4, output)
+        }.pbackground { cb in
+            self.asyncTaskTimeUse(cb, timeuse: 3, output)
+        }.pdone {
+            XCTAssertEqual(output.array.count, 7, "Parallel Tasks")
+            expectation.fulfill()
+        }
+        
+        self.waitForExpectationsWithTimeout(10, handler: { (error: NSError?) -> Void in
+            if let desc = error?.localizedDescription {
+                println("done with error = \(desc)")
+            }
+            else {
+                println("done with no error")
+            }
+        })
+    }
 }
