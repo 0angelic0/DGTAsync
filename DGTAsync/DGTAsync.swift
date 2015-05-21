@@ -72,7 +72,9 @@ public class DGTAsync {
         }
         else {
             if let err_cb = self.err_callback {
-                err_cb(error!)
+                dispatch_async(dispatch_get_main_queue()) {
+                    err_cb(error!)
+                }
             }
             else {
                 if let nextDGTAsync = self.next {
