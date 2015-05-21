@@ -77,6 +77,37 @@ DGTAsync.background { cb in
 }
 ```
 
+### Parallel Tasks
+
+DGTAsync can also handle parallel tasks (but BEWARE about race condition and deadlock. YOU HAVE BEEN WARNED!)
+
+When working with parallel tasks you have to work with another set of DGTAsync API that every methods have been prefixed with `p`. There are `pbackground`, `pmain` and `pdone` that will let you know when your tasks done.
+
+All task will begin execute just right after you call `pbackground` and/or `pmain` they don't wait anything.
+
+The example below demonstrate how to parallel upload multiple files and know when it's done.
+
+```
+DGTAsync.pbackground { cb in
+  Alamofire.upload(.POST, "http://server.com/upload", file: fileURL1)
+         .responseJSON { (request, response, data, error) in
+                     cb(error)
+                   }
+}.pbackground { cb in
+  Alamofire.upload(.POST, "http://server.com/upload", file: fileURL2)
+         .responseJSON { (request, response, data, error) in
+                     cb(error)
+                   }
+}.pbackground { cb in
+  Alamofire.upload(.POST, "http://server.com/upload", file: fileURL3)
+         .responseJSON { (request, response, data, error) in
+                     cb(error)
+                   }
+}.pdone { 
+  println("All files have been uploaded.")
+}
+```
+
 ## License
 
 DGTAsync is released under the MIT license. See LICENSE for details.
