@@ -1,5 +1,5 @@
 # DGTAsync
-DGTAsync was inspired by duemunk/Async. But it was written from the ground up to be able to handle an async tasks such as Alamofire download/upload tasks. It also can handle errors.
+DGTAsync was inspired by duemunk/Async. But it was written from the ground up to be able to handle an async tasks such as Alamofire download/upload tasks. It also can handle errors and parallel tasks.
 
 ## CocoaPods Installation
     pod 'DGTAsync'
@@ -81,11 +81,11 @@ DGTAsync.background { cb in
 
 DGTAsync can also handle parallel tasks (but BEWARE about race condition and deadlock. YOU HAVE BEEN WARNED!)
 
-When working with parallel tasks you have to work with another set of DGTAsync API that every methods have been prefixed with `p`. There are `pbackground`, `pmain` and `pdone` that will let you know when your tasks done.
+When working with parallel tasks you have to work with another set of DGTAsync API that every methods have been prefixed with `p`. There are `pbackground`, `pmain` and `pdone` that will let you know when your tasks have done.
 
-All task will begin execute just right after you call `pbackground` and/or `pmain` they don't wait anything.
+All tasks will begin execute just right after you call `pbackground` or `pmain` they don't wait anything.
 
-The example below demonstrate how to parallel upload multiple files and know when it's done.
+The example below demonstrate how to parallel upload multiple files and know when they are done.
 
 ```
 DGTAsync.pbackground { cb in
